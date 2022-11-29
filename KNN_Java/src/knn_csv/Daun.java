@@ -1,4 +1,7 @@
-package knn_java;
+package knn_csv;
+
+import knn_java.*;
+
 public class Daun {
     String label;
     double panjang, lebar;
@@ -7,6 +10,12 @@ public class Daun {
         panjang = 0;
         lebar = 0;
         label = null;
+    }
+
+    public Daun(double panjang, double lebar,String label) {
+        this.label = label;
+        this.panjang = panjang;
+        this.lebar = lebar;
     }
 
     public double getPanjang() {

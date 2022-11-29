@@ -28,9 +28,9 @@ public class BacaExcel {
                     continue;
                 }else{
                     if (j == 0) {
-                        dataDaun.setPanjang(ret);
+                        dataDaun.setPanjang(Double.parseDouble(ret));
                     }else if(j == 1){
-                        dataDaun.setLebar(ret);
+                        dataDaun.setLebar(Double.parseDouble(ret));
                     }else{
                         dataDaun.setLabel(ret);
                         data.add(dataDaun);
