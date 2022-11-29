@@ -1,22 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package knn_java;
 
-/**
- *
- * @author bimab
- */
+import java.io.IOException;
+import java.util.ArrayList;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
 public class KNN_Java {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws IOException, BiffException {
+        ArrayList<Daun> dataDaun = new ArrayList<>();
+        BacaExcel data = new BacaExcel();
+//        data.readFile("C:\\Users\\bimab\\OneDrive\\Documents\\data.xlsx.xls");
+        
+        dataDaun = data.readFile("C:\\Users\\bimab\\OneDrive\\Documents\\data.xlsx.xls");
+        for (Daun daun : dataDaun) {
+            System.out.println("Panjang : " + daun.getPanjang() + " Lebar : " + daun.getLebar() + " Label : " + daun.getLabel());
+        }
     }
-    
+
 }
