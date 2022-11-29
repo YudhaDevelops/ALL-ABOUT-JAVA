@@ -42,6 +42,9 @@ public class knn_csv {
             System.out.println("Hasil Includian : " + includian.getHasilHitung() + " Label : " + includian.getLabel());
         }
         
-        
+        System.out.println("");
+        System.out.println("Data Tertebak Berdasarkan K = 1 : " + data.CariKNN(listInclu, 1));
+        System.out.println("Data Tertebak Berdasarkan K = 3 : " + data.CariKNN(listInclu, 3));
+        System.out.println("Data Tertebak Berdasarkan K = 5 : " + data.CariKNN(listInclu, 5));
     }
 }

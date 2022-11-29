@@ -15,6 +15,37 @@ import knn_java.*;
 public class KNN {
     ArrayList<Includian> includean = new ArrayList<>();
     
+    public String CariKNN(ArrayList<Includian> data, int k){
+        String label = "Error";
+        if (k > 1) {
+            //buat tempat e dulu berdasarkan banyak nya k
+            String [] dataTampung = new String[k];
+            
+            //masukkno datane nang array berdasarkan banyak nya k
+            for (int i = 0; i < k; i++) {
+                dataTampung[i] = data.get(i).getLabel();
+            }
+            
+            //cek jumlah e akeh po rane seko data nang array
+            int count = 0, freq = 0;
+            for (int i = 0; i < k; i++) {
+                for (int j = i + 1; j < k; j++) {
+                    if (dataTampung[j].equals(dataTampung[i])) {
+                        count++;
+                    }
+                    if (count >= freq) {
+                        label = dataTampung[i];
+                    } else if (count == freq) {
+                        label = "eror";
+                    }
+                }
+            }
+        }else{
+            label = data.get(0).getLabel();
+        }
+        return label;
+    }
+    
     public ArrayList<Tebak> TebakDaun(ArrayList<Includian> dataHasilInclu, ArrayList<Daun> dataLatih){
         //NOTE method ini di pakai sebelum di sort atau di urutkan untuk dataHasilInclu
         ArrayList<Tebak> listTebak = new ArrayList<Tebak>();
