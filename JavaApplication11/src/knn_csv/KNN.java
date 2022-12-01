@@ -10,10 +10,12 @@ import java.util.Scanner;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import knn_java.*;
 
 public class KNN {
     ArrayList<Includian> includean = new ArrayList<>();
+    ArrayList<Daun> DataLatih = new ArrayList<>();
+    String Label = "";
+    
     
     public String CariKNN(ArrayList<Includian> data, int k){
         String label = "Error";
@@ -46,16 +48,47 @@ public class KNN {
         return label;
     }
     
-    public double CariAkurasi(ArrayList<Includian> data, String label){
-        int benar = 0;
-        double akurasi = 0;
-        for (Includian includian : data) {
-            if (includian.getLabel().equalsIgnoreCase(label)) {
-                benar+=1;
+    public void CariKNNPrint(ArrayList<Includian> data, int k){
+        String label = "Error";
+        if (k > 1) {
+            //buat tempat e dulu berdasarkan banyak nya k
+            String [] dataTampung = new String[k];
+            
+            //masukkno datane nang array berdasarkan banyak nya k
+            for (int i = 0; i < k; i++) {
+                dataTampung[i] = data.get(i).getLabel();
             }
+            
+            //cek jumlah e akeh po rane seko data nang array
+            int count = 0, freq = 0;
+            for (int i = 0; i < k; i++) {
+                for (int j = i + 1; j < k; j++) {
+                    if (dataTampung[j].equals(dataTampung[i])) {
+                        count++;
+                    }
+                    if (count >= freq) {
+                        label = dataTampung[i];
+                    } else if (count == freq) {
+                        label = "eror";
+                    }
+                }
+            }
+        }else{
+            label = data.get(0).getLabel();
         }
-        akurasi = (benar / data.size()) * 100;
-        return akurasi;
+        System.out.println("K = " + k + " Hasil : " + label);
+    }
+    
+    public ArrayList<Daun> gabungDataLatih(ArrayList<Daun> Data1 , ArrayList<Daun> Data2){
+        for (Daun daun1 : Data1) {
+            Daun d = new Daun(daun1.getPanjang(), daun1.getLebar(), daun1.getLabel());
+            DataLatih.add(d);
+        }
+        for (Daun daun2 : Data2) {
+            Daun d = new Daun(daun2.getPanjang(), daun2.getLebar(), daun2.getLabel());
+            DataLatih.add(d);
+        }
+        return DataLatih;
     }
     
     public ArrayList<Tebak> TebakDaun(ArrayList<Includian> dataHasilInclu, ArrayList<Daun> dataLatih){
@@ -114,6 +147,41 @@ public class KNN {
         }
         return this.includean;
     }
+    
+    public ArrayList<ArrayList<Includian>> HitungIncludianArrayList(ArrayList<Daun> dataLatih, ArrayList<Daun> dataUji){
+        double hasil;
+        ArrayList<ArrayList<Includian>> data = new ArrayList<ArrayList<Includian>>();
+        ArrayList<Includian> temp = new ArrayList<Includian>();
+        for (int i = 0; i < dataUji.size(); i++) {
+            System.out.println("Data Uji : " + dataUji.get(i).getLabel());
+            ArrayList<Includian> d = new ArrayList<Includian>();
+            
+            for (int j = 0; j < dataLatih.size(); j++) {
+                hasil = Math.sqrt(((dataLatih.get(j).getPanjang() - dataUji.get(i).getPanjang()) * (dataLatih.get(j).getPanjang() - dataUji.get(i).getPanjang()))
+                            + ((dataLatih.get(j).getLebar() - dataUji.get(i).getLebar()) * (dataLatih.get(j).getLebar() - dataUji.get(i).getLebar())));
+                Includian inclu = new Includian(hasil,dataLatih.get(j).getLabel());
+                d.add(inclu);
+            }
+            temp = this.CekUrutanIncludian(d);
+            this.CariKNNPrint(temp,1);
+            this.CariKNNPrint(temp, 3);
+            this.CariKNNPrint(temp, 5);
+            System.out.println("");
+            data.add(d);
+        }
+        return data;
+    }
+
+    public String getLabel() {
+        return Label;
+    }
+
+    public void setLabel(String Label) {
+        this.Label = Label;
+    }
+
+    
+    
     
     public ArrayList<Daun> BacaCsvBuffer(String directory) {
         String line = "";

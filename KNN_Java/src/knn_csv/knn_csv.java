@@ -41,10 +41,22 @@ public class knn_csv {
         for (Includian includian : listInclu) {
             System.out.println("Hasil Includian : " + includian.getHasilHitung() + " Label : " + includian.getLabel());
         }
-        
+        //cari akurasi jumlah bener / total
         System.out.println("");
         System.out.println("Data Tertebak Berdasarkan K = 1 : " + data.CariKNN(listInclu, 1));
         System.out.println("Data Tertebak Berdasarkan K = 3 : " + data.CariKNN(listInclu, 3));
+//        System.out.println("\nAkurasi K2 : " + data.CariAkurasi(listInclu, dataUji.getLabel()));
         System.out.println("Data Tertebak Berdasarkan K = 5 : " + data.CariKNN(listInclu, 5));
+//        System.out.println("\nAkurasi K3 : " + + data.CariAkurasi(listInclu, dataUji.getLabel()));
+        
+        if (data.CariKNN(listInclu, 1).equalsIgnoreCase(dataUji.getLabel())) {
+            System.out.println("Benar");
+        }
+        
+//        String hasil = data.CariKNN(listInclu, 3)
+        if (data.CariKNN(listInclu, 11).equalsIgnoreCase(dataUji.getLabel())) {
+            System.out.println("Benar");
+        }
+
     }
 }
