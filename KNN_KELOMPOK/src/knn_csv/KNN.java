@@ -200,8 +200,12 @@ public class KNN {
             ArrayList<Includian> d = new ArrayList<Includian>();
 
             for (int j = 0; j < dataLatih.size(); j++) {
-                hasil = Math.sqrt(((dataLatih.get(j).getPanjang() - dataUji.get(i).getPanjang()) * (dataLatih.get(j).getPanjang() - dataUji.get(i).getPanjang()))
-                        + ((dataLatih.get(j).getLebar() - dataUji.get(i).getLebar()) * (dataLatih.get(j).getLebar() - dataUji.get(i).getLebar())));
+                hasil = Math.sqrt(((
+                        dataLatih.get(j).getPanjang() - dataUji.get(i).getPanjang()) * (
+                        dataLatih.get(j).getPanjang() - dataUji.get(i).getPanjang()))
+                + ((
+                        dataLatih.get(j).getLebar() - dataUji.get(i).getLebar()) * (
+                        dataLatih.get(j).getLebar() - dataUji.get(i).getLebar())));
                 Includian inclu = new Includian(hasil, dataLatih.get(j).getLabel());
                 d.add(inclu);
             }

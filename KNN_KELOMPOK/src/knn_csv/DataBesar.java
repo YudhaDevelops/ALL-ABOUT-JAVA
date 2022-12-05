@@ -6,12 +6,14 @@ public class DataBesar {
     ArrayList<Includian> listInclu = new ArrayList<Includian>();
     double tebakBenar, tebakSalah;
     double akurasi;
+    String tebakK;
 
     public DataBesar(ArrayList<Includian> listIncludian) {
         this.listInclu = listIncludian;
         this.tebakBenar = 0;
         this.tebakSalah = 0;
         this.akurasi = 0;
+        this.tebakK = "";
     }
 
     public DataBesar() {
@@ -19,12 +21,22 @@ public class DataBesar {
         this.tebakBenar = 0;
         this.tebakSalah = 0;
         this.akurasi = 0;
+        this.tebakK = "";
     }
     
-    public DataBesar(int tebakBenar, int tebakSalah, double akurasi) {
+    public DataBesar(int tebakBenar, int tebakSalah, double akurasi, String tebakK) {
         this.tebakBenar = tebakBenar;
         this.tebakSalah = tebakSalah;
         this.akurasi = akurasi;
+        this.tebakK = tebakK;
+    }
+
+    public String getTebakK() {
+        return tebakK;
+    }
+
+    public void setTebakK(String tebakK) {
+        this.tebakK = tebakK;
     }
     
     public ArrayList<Includian> getListInclu() {
@@ -58,6 +70,5 @@ public class DataBesar {
     public void setAkurasi(double akurasi) {
         this.akurasi = akurasi;
     }
-    
     
 }
