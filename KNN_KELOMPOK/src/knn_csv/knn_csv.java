@@ -54,45 +54,45 @@ public class knn_csv {
         akurasiC = data.CariAkurasiSemuaDataUji(DataBesar);
         System.out.printf("Akurasi Dari Seluruhnya : %.2f Persen \n", akurasiC);
 //        
-//        //gabung data A & C --> data B (uji)
-//        DataLatih = data.gabungDataLatih(DataA, DataC);
-//        DataUji = DataB;
-//        //data uji DataC
-//        DataBesar = data.HitungIncludianArrayList(DataLatih, DataUji);
-//        System.out.println("Hitung Includian + Sort : Done");
-//
-//        DataBesar = data.CariKNNArrayList(DataBesar,DataUji, 3);
-//        System.out.println("");
-//        data.printData(DataBesar);
-//        
-//        System.out.println("");
-//        System.out.println("Hitung Akurasi Semua");
-//        akurasiB = data.CariAkurasiSemuaDataUji(DataBesar);
-//        System.out.printf("Akurasi Dari Seluruhnya : %.2f Persen \n", akurasiB);
-//        
-//        //gabung data B & C --> data A (uji)
-//        DataLatih = data.gabungDataLatih(DataB, DataC);
-//        DataUji = DataA;
-//        //data uji DataA
-//        DataBesar = data.HitungIncludianArrayList(DataLatih, DataUji);
-//        System.out.println("Hitung Includian + Sort : Done");
-//
-//        DataBesar = data.CariKNNArrayList(DataBesar,DataUji, 3);
-//        System.out.println("");
-//        data.printData(DataBesar);
-//        
-//        System.out.println("");
-//        System.out.println("Hitung Akurasi Semua");
-//        akurasiA = data.CariAkurasiSemuaDataUji(DataBesar);
-//        System.out.printf("Akurasi Dari DataUji A : %.2f Persen \n", akurasiA);
-//        
-//        //rata rata dari ke 3 akurasi 
-//        double hasil = (akurasiA + akurasiB + akurasiC) / 3;
-//        System.out.println("");
-//        System.out.printf("Akurasi Dari Data Uji A : %.2f Persen \n", akurasiA);
-//        System.out.printf("Akurasi Dari Data Uji B : %.2f Persen \n", akurasiB);
-//        System.out.printf("Akurasi Dari Data Uji C : %.2f Persen \n", akurasiC);
-//        System.out.printf("Rata Rata Dari 3 Akurasi : %.2f Persen" , hasil);
-//        System.out.println("");
+        //gabung data A & C --> data B (uji)
+        DataLatih = data.gabungDataLatih(DataA, DataC);
+        DataUji = DataB;
+        //data uji DataC
+        DataBesar = data.HitungIncludianArrayList(DataLatih, DataUji);
+        System.out.println("Hitung Includian + Sort : Done");
+
+        DataBesar = data.CariAkurasiKNNArrayList(DataBesar,DataUji, 3);
+        System.out.println("");
+        data.printData(DataBesar);
+        
+        System.out.println("");
+        System.out.println("Hitung Akurasi Semua");
+        akurasiB = data.CariAkurasiSemuaDataUji(DataBesar);
+        System.out.printf("Akurasi Dari Seluruhnya : %.2f Persen \n", akurasiB);
+        
+        //gabung data B & C --> data A (uji)
+        DataLatih = data.gabungDataLatih(DataB, DataC);
+        DataUji = DataA;
+        //data uji DataA
+        DataBesar = data.HitungIncludianArrayList(DataLatih, DataUji);
+        System.out.println("Hitung Includian + Sort : Done");
+
+        DataBesar = data.CariAkurasiKNNArrayList(DataBesar,DataUji, 3);
+        System.out.println("");
+        data.printData(DataBesar);
+        
+        System.out.println("");
+        System.out.println("Hitung Akurasi Semua");
+        akurasiA = data.CariAkurasiSemuaDataUji(DataBesar);
+        System.out.printf("Akurasi Dari DataUji A : %.2f Persen \n", akurasiA);
+        
+        //rata rata dari ke 3 akurasi 
+        double hasil = (akurasiA + akurasiB + akurasiC) / 3;
+        System.out.println("");
+        System.out.printf("Akurasi Dari Data Uji A : %.2f Persen \n", akurasiA);
+        System.out.printf("Akurasi Dari Data Uji B : %.2f Persen \n", akurasiB);
+        System.out.printf("Akurasi Dari Data Uji C : %.2f Persen \n", akurasiC);
+        System.out.printf("Rata Rata Dari 3 Akurasi : %.2f Persen" , hasil);
+        System.out.println("");
     }
 }

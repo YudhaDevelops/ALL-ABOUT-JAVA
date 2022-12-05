@@ -60,8 +60,8 @@ public class KNN_BUAH {
         }
         return data;
     }
-    
-    public double CariAkurasiSemuaDataUji(ArrayList<DataBesar> data){
+
+    public double CariAkurasiSemuaDataUji(ArrayList<DataBesar> data) {
         double akurasi = 0;
         for (int i = 0; i < data.size(); i++) {
             //akurasi / semua data
@@ -93,7 +93,7 @@ public class KNN_BUAH {
             data.setR_Kur(buah1.getR_Kur());
             data.setG_Kur(buah1.getG_Kur());
             data.setB_Kur(buah1.getB_Kur());
-            
+
             data.setLabel(buah1.getLabel());
             DataLatih.add(buah1);
         }
@@ -118,13 +118,13 @@ public class KNN_BUAH {
             data.setR_Kur(buah2.getR_Kur());
             data.setG_Kur(buah2.getG_Kur());
             data.setB_Kur(buah2.getB_Kur());
-            
+
             data.setLabel(buah2.getLabel());
             DataLatih.add(data);
         }
         return DataLatih;
     }
-    
+
     public ArrayList<DataBesar> HitungIncludianArrayList(ArrayList<Buah> dataLatih, ArrayList<Buah> dataUji) {
         double hasil;
         ArrayList<DataBesar> data = new ArrayList<DataBesar>();
@@ -134,59 +134,22 @@ public class KNN_BUAH {
             ArrayList<Includian> d = new ArrayList<Includian>();
 
             for (int j = 0; j < dataLatih.size(); j++) {
-                hasil = Math.sqrt((
-                        //RGB MEAN
-                        (
-                                dataLatih.get(j).getR_Men() - dataUji.get(i).getR_Men()) * (
-                                dataLatih.get(j).getR_Men() - dataUji.get(i).getR_Men()
-                                ))
-                        + (
-                                (dataLatih.get(j).getG_Men()- dataUji.get(i).getG_Men()) * (
-                                dataLatih.get(j).getG_Men() - dataUji.get(i).getG_Men()
-                                ))
-                        + (
-                                (dataLatih.get(j).getB_Men()- dataUji.get(i).getB_Men()) * (
-                                dataLatih.get(j).getB_Men() - dataUji.get(i).getB_Men()
-                                ))
+                hasil = Math.sqrt(( //RGB MEAN
+                        (dataLatih.get(j).getR_Men() - dataUji.get(i).getR_Men()) * (dataLatih.get(j).getR_Men() - dataUji.get(i).getR_Men()))
+                        + ((dataLatih.get(j).getG_Men() - dataUji.get(i).getG_Men()) * (dataLatih.get(j).getG_Men() - dataUji.get(i).getG_Men()))
+                        + ((dataLatih.get(j).getB_Men() - dataUji.get(i).getB_Men()) * (dataLatih.get(j).getB_Men() - dataUji.get(i).getB_Men()))
                         //RGB VARIAN
-                        + (
-                                (dataLatih.get(j).getR_Var()- dataUji.get(i).getR_Var()) * (
-                                dataLatih.get(j).getR_Var() - dataUji.get(i).getR_Var()
-                                ))
-                        + (
-                                (dataLatih.get(j).getG_Var()- dataUji.get(i).getG_Var()) * (
-                                dataLatih.get(j).getG_Var() - dataUji.get(i).getG_Var()
-                                ))
-                        + (
-                                (dataLatih.get(j).getB_Var()- dataUji.get(i).getB_Var()) * (
-                                dataLatih.get(j).getB_Var() - dataUji.get(i).getB_Var()
-                                ))
+                        + ((dataLatih.get(j).getR_Var() - dataUji.get(i).getR_Var()) * (dataLatih.get(j).getR_Var() - dataUji.get(i).getR_Var()))
+                        + ((dataLatih.get(j).getG_Var() - dataUji.get(i).getG_Var()) * (dataLatih.get(j).getG_Var() - dataUji.get(i).getG_Var()))
+                        + ((dataLatih.get(j).getB_Var() - dataUji.get(i).getB_Var()) * (dataLatih.get(j).getB_Var() - dataUji.get(i).getB_Var()))
                         //RGB SKEWNESS
-                        + (
-                                (dataLatih.get(j).getR_Skew() - dataUji.get(i).getR_Skew()) * (
-                                dataLatih.get(j).getR_Skew() - dataUji.get(i).getR_Skew()
-                                ))
-                        + (
-                                (dataLatih.get(j).getG_Skew()- dataUji.get(i).getG_Skew()) * (
-                                dataLatih.get(j).getG_Skew() - dataUji.get(i).getG_Skew()
-                                ))
-                        + (
-                                (dataLatih.get(j).getB_Skew()- dataUji.get(i).getB_Skew()) * (
-                                dataLatih.get(j).getB_Skew() - dataUji.get(i).getB_Skew()
-                                ))
+                        + ((dataLatih.get(j).getR_Skew() - dataUji.get(i).getR_Skew()) * (dataLatih.get(j).getR_Skew() - dataUji.get(i).getR_Skew()))
+                        + ((dataLatih.get(j).getG_Skew() - dataUji.get(i).getG_Skew()) * (dataLatih.get(j).getG_Skew() - dataUji.get(i).getG_Skew()))
+                        + ((dataLatih.get(j).getB_Skew() - dataUji.get(i).getB_Skew()) * (dataLatih.get(j).getB_Skew() - dataUji.get(i).getB_Skew()))
                         //RGB KURTOSIS
-                        + (
-                                (dataLatih.get(j).getB_Kur() - dataUji.get(i).getR_Kur()) * (
-                                dataLatih.get(j).getR_Kur() - dataUji.get(i).getR_Kur()
-                                ))
-                        + (
-                                (dataLatih.get(j).getG_Kur()- dataUji.get(i).getG_Kur()) * (
-                                dataLatih.get(j).getG_Kur() - dataUji.get(i).getG_Kur()
-                                ))
-                        + (
-                                (dataLatih.get(j).getB_Kur()- dataUji.get(i).getB_Kur()) * (
-                                dataLatih.get(j).getB_Kur() - dataUji.get(i).getB_Kur()
-                                ))
+                        + ((dataLatih.get(j).getR_Kur() - dataUji.get(i).getR_Kur()) * (dataLatih.get(j).getR_Kur() - dataUji.get(i).getR_Kur()))
+                        + ((dataLatih.get(j).getG_Kur() - dataUji.get(i).getG_Kur()) * (dataLatih.get(j).getG_Kur() - dataUji.get(i).getG_Kur()))
+                        + ((dataLatih.get(j).getB_Kur() - dataUji.get(i).getB_Kur()) * (dataLatih.get(j).getB_Kur() - dataUji.get(i).getB_Kur()))
                 );
                 Includian inclu = new Includian(hasil, dataLatih.get(j).getLabel());
                 d.add(inclu);
@@ -201,7 +164,7 @@ public class KNN_BUAH {
         }
         return data;
     }
-    
+
     //Method untuk mengurutkan data berdasarkan class includian
     public ArrayList<Includian> CekUrutanIncludian(ArrayList<Includian> data) {
         Includian temp;
@@ -216,7 +179,7 @@ public class KNN_BUAH {
         }
         return data;
     }
-    
+
     public void CariKNNPrint(ArrayList<Includian> data, int k) {
         String label = "Error";
         if (k > 1) {
@@ -235,11 +198,12 @@ public class KNN_BUAH {
                     if (dataTampung[j].equals(dataTampung[i])) {
                         count++;
                     }
-                    if (count >= freq) {
-                        label = dataTampung[i];
-                    } else if (count == freq) {
-                        label = "eror";
-                    }
+
+                }
+                if (count >= freq) {
+                    label = dataTampung[i];
+                } else if (count == freq) {
+                    label = "eror";
                 }
             }
         } else {
@@ -281,7 +245,7 @@ public class KNN_BUAH {
         }
         return data;
     }
-    
+
     public void printData(ArrayList<DataBesar> data) {
         System.out.println("Print Data");
         for (int i = 0; i < data.size(); i++) {
@@ -299,5 +263,5 @@ public class KNN_BUAH {
             System.out.println("");
         }
     }
-    
+
 }
