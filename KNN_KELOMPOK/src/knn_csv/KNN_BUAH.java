@@ -9,6 +9,7 @@ public class KNN_BUAH {
 
     ArrayList<Includian> includean = new ArrayList<>();
     ArrayList<Buah> DataLatih = new ArrayList<>();
+    ArrayList<K> NilaiK;
     String Label = "";
 
     public ArrayList<Buah> BacaCsvBuffer(String directory) {
@@ -158,6 +159,7 @@ public class KNN_BUAH {
             this.CariKNNPrint(temp, 1);
             this.CariKNNPrint(temp, 3);
             this.CariKNNPrint(temp, 5);
+            this.CariKNNPrint(temp, 7);
             System.out.println("");
             DataBesar dataBesar = new DataBesar(temp);
             data.add(dataBesar);
@@ -180,36 +182,69 @@ public class KNN_BUAH {
         return data;
     }
 
+    public ArrayList<K> CekUrutanK(ArrayList<K> data) {
+        K temp;
+        for (int i = 0; i < data.size() - 1; i++) {
+            for (int j = 0; j < data.size() - 1; j++) {
+                if (data.get(j).getFreq() < data.get(j + 1).getFreq()) {
+                    temp = data.get(j);
+                    data.set(j, data.get(j + 1));
+                    data.set(j + 1, temp);
+                }
+            }
+        }
+        return data;
+    }
+
     public void CariKNNPrint(ArrayList<Includian> data, int k) {
         String label = "Error";
+        this.NilaiK = new ArrayList<K>();
         if (k > 1) {
-            //buat tempat e dulu berdasarkan banyak nya k
+            //buat tempat nya dulu berdasarkan banyak nya k
             String[] dataTampung = new String[k];
 
-            //masukkno datane nang array berdasarkan banyak nya k
+            //masukkan datanya ke array berdasarkan banyak nya k
             for (int i = 0; i < k; i++) {
                 dataTampung[i] = data.get(i).getLabel();
+                addK(data.get(i).getLabel());
             }
 
-            //cek jumlah e akeh po rane seko data nang array
-            int count = 0, freq = 0;
-            for (int i = 0; i < k; i++) {
-                for (int j = i + 1; j < k; j++) {
-                    if (dataTampung[j].equals(dataTampung[i])) {
-                        count++;
-                    }
+            //urutne
+            this.NilaiK = CekUrutanK(this.NilaiK);
 
+            if (this.NilaiK.size() > 1) {
+                if (this.NilaiK.get(0).getFreq() > this.NilaiK.get(1).getFreq()) {
+                    label = this.NilaiK.get(0).getLabel();
+                } else if (this.NilaiK.get(0).getFreq() == this.NilaiK.get(1).getFreq()) {
+                    label = data.get(0).getLabel();
+                } else {
+                    label = data.get(0).getLabel();
                 }
-                if (count >= freq) {
-                    label = dataTampung[i];
-                } else if (count == freq) {
-                    label = "eror";
-                }
+            }else{
+                label = this.NilaiK.get(0).getLabel();
             }
         } else {
             label = data.get(0).getLabel();
         }
         System.out.println("K = " + k + " Hasil : " + label);
+    }
+
+    private void addK(String K) {
+        K n = new K(1, K);
+        int sama = 0;
+        if (this.NilaiK.size() == 0) {
+            NilaiK.add(n);
+        } else {
+            for (int i = 0; i < NilaiK.size(); i++) {
+                if (NilaiK.get(i).getLabel().equals(K)) {
+                    NilaiK.get(i).setFreq(1 + NilaiK.get(i).getFreq());
+                    sama = 1;
+                }
+            }
+            if (sama == 0) {
+                NilaiK.add(n);
+            }
+        }
     }
 
     public ArrayList<DataBesar> CariAkurasiKNNArrayList(ArrayList<DataBesar> data, ArrayList<Buah> dataUji, int k) {
@@ -237,7 +272,7 @@ public class KNN_BUAH {
                 data.get(i).setTebakBenar(benar);
                 data.get(i).setTebakSalah(salah);
                 data.get(i).setAkurasi(akurasiPerK);
-                data.get(i).setTebakK(Label);
+//                data.get(i).setTebakK(Label);
             }
 
         } else {

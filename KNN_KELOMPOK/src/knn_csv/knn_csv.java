@@ -47,10 +47,10 @@ public class knn_csv {
 
         DataBesar = data.CariAkurasiKNNArrayList(DataBesar, DataUji, 3);
         System.out.println("");
-        data.printData(DataBesar);
+//        data.printData(DataBesar);
 //        
         System.out.println("");
-        System.out.println("Hitung Akurasi Semua");
+        System.out.println("Hitung Akurasi");
         akurasiC = data.CariAkurasiSemuaDataUji(DataBesar);
         System.out.printf("Akurasi Dari Seluruhnya : %.2f Persen \n", akurasiC);
 //        
@@ -63,10 +63,10 @@ public class knn_csv {
 
         DataBesar = data.CariAkurasiKNNArrayList(DataBesar,DataUji, 3);
         System.out.println("");
-        data.printData(DataBesar);
+//        data.printData(DataBesar);
         
         System.out.println("");
-        System.out.println("Hitung Akurasi Semua");
+        System.out.println("Hitung Akurasi");
         akurasiB = data.CariAkurasiSemuaDataUji(DataBesar);
         System.out.printf("Akurasi Dari Seluruhnya : %.2f Persen \n", akurasiB);
         
@@ -79,10 +79,10 @@ public class knn_csv {
 
         DataBesar = data.CariAkurasiKNNArrayList(DataBesar,DataUji, 3);
         System.out.println("");
-        data.printData(DataBesar);
+//        data.printData(DataBesar);
         
         System.out.println("");
-        System.out.println("Hitung Akurasi Semua");
+        System.out.println("Hitung Akurasi");
         akurasiA = data.CariAkurasiSemuaDataUji(DataBesar);
         System.out.printf("Akurasi Dari DataUji A : %.2f Persen \n", akurasiA);
         
