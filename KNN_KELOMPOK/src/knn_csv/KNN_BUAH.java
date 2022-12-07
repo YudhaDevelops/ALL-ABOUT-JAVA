@@ -4,12 +4,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class KNN_BUAH {
 
     ArrayList<Includian> includean = new ArrayList<>();
     ArrayList<Buah> DataLatih = new ArrayList<>();
+    ArrayList<Buah> DataA = new ArrayList<>();
+    ArrayList<Buah> DataB = new ArrayList<>();
+    ArrayList<Buah> DataC = new ArrayList<>();
+    ArrayList<String> LabelList = new ArrayList<>();
     ArrayList<K> NilaiK;
+    int a = 0, b = 0, c = 0, d = 0, e = 0;
     String Label = "";
 
     public ArrayList<Buah> BacaCsvBuffer(String directory) {
@@ -60,6 +66,36 @@ public class KNN_BUAH {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public void PecahData(ArrayList<Buah> data) {
+        int bagi = data.size() / 3;
+        Random GetRandom = new Random();
+        data.get(GetRandom.nextInt(data.size()));
+        
+        for (int i = 0; i < data.size(); i++) {
+            if (this.DataA.size() < bagi) {
+                this.DataA.add(data.get(i));
+            }
+            else if(this.DataB.size() < bagi){
+                this.DataB.add(data.get(i));
+            }
+            else if(this.DataC.size() < bagi){
+                this.DataC.add(data.get(i));
+            }
+        }
+    }
+
+    public ArrayList<Buah> getDataA() {
+        return DataA;
+    }
+
+    public ArrayList<Buah> getDataB() {
+        return DataB;
+    }
+
+    public ArrayList<Buah> getDataC() {
+        return DataC;
     }
 
     public double CariAkurasiSemuaDataUji(ArrayList<DataBesar> data) {
@@ -126,7 +162,7 @@ public class KNN_BUAH {
         return DataLatih;
     }
 
-    public ArrayList<DataBesar> HitungIncludianArrayList(ArrayList<Buah> dataLatih, ArrayList<Buah> dataUji) {
+    public ArrayList<DataBesar> HitungIncludianArrayList(ArrayList<Buah> dataLatih, ArrayList<Buah> dataUji,int K) {
         double hasil;
         ArrayList<DataBesar> data = new ArrayList<DataBesar>();
         ArrayList<Includian> temp = new ArrayList<Includian>();
@@ -156,10 +192,7 @@ public class KNN_BUAH {
                 d.add(inclu);
             }
             temp = this.CekUrutanIncludian(d);
-            this.CariKNNPrint(temp, 1);
-            this.CariKNNPrint(temp, 3);
-            this.CariKNNPrint(temp, 5);
-            this.CariKNNPrint(temp, 7);
+            this.CariKNNPrint(temp, K);
             System.out.println("");
             DataBesar dataBesar = new DataBesar(temp);
             data.add(dataBesar);
@@ -220,7 +253,7 @@ public class KNN_BUAH {
                 } else {
                     label = data.get(0).getLabel();
                 }
-            }else{
+            } else {
                 label = this.NilaiK.get(0).getLabel();
             }
         } else {
