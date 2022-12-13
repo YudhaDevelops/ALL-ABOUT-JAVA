@@ -307,7 +307,6 @@ public class KNN_BUAH {
                 data.get(i).setAkurasi(akurasiPerK);
 //                data.get(i).setTebakK(Label);
             }
-
         } else {
             System.out.println("K Anda Tidak Saya Terima");
         }

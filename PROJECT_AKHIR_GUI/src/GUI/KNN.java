@@ -7,15 +7,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class KNN {
-    
+
     ArrayList<Buah> DataA = new ArrayList<>();
     ArrayList<Buah> DataB = new ArrayList<>();
     ArrayList<Buah> DataC = new ArrayList<>();
     ArrayList<Buah> DataLatih = new ArrayList<>();
     ArrayList<Tebak> tebakList = new ArrayList<>();
     ArrayList<K> NilaiK;
+    double benar, salah;
     String Label;
-    
+
     public ArrayList<Buah> BacaCsvBuffer(String directory) {
         String line = "";
         String splitBy = ",";
@@ -65,20 +66,22 @@ public class KNN {
         }
         return data;
     }
-    
+
     public void PecahData(ArrayList<Buah> data) {
-        int bagi = data.size() / 3;
+        this.DataA.clear();
+        this.DataB.clear();
+        this.DataC.clear();
+
+        int bagi = data.size() / 3; //genap
         Random GetRandom = new Random();
         data.get(GetRandom.nextInt(data.size()));
-        
+
         for (int i = 0; i < data.size(); i++) {
             if (this.DataA.size() < bagi) {
                 this.DataA.add(data.get(i));
-            }
-            else if(this.DataB.size() < bagi){
+            } else if (this.DataB.size() < bagi) {
                 this.DataB.add(data.get(i));
-            }
-            else if(this.DataC.size() < bagi){
+            } else if (this.DataC.size() < bagi) {
                 this.DataC.add(data.get(i));
             }
         }
@@ -95,7 +98,7 @@ public class KNN {
     public ArrayList<Buah> getDataC() {
         return DataC;
     }
-    
+
     public ArrayList<Buah> gabungDataLatih(ArrayList<Buah> Data1, ArrayList<Buah> Data2) {
         for (Buah buah1 : Data1) {
             Buah data = new Buah();
@@ -149,13 +152,13 @@ public class KNN {
         }
         return DataLatih;
     }
-    
-    public ArrayList<DataBesar> HitungIncludianArrayList(ArrayList<Buah> dataLatih, ArrayList<Buah> dataUji,int K) {
+
+    public ArrayList<DataBesar> HitungIncludianArrayList(ArrayList<Buah> dataLatih, ArrayList<Buah> dataUji, int K) {
         double hasil;
         ArrayList<DataBesar> data = new ArrayList<DataBesar>();
         ArrayList<Includian> temp = new ArrayList<Includian>();
         for (int i = 0; i < dataUji.size(); i++) {
-//            System.out.println("Data Uji : " + dataUji.get(i).getLabel());
+            System.out.println("Data Uji : " + dataUji.get(i).getLabel());
             ArrayList<Includian> d = new ArrayList<Includian>();
 
             for (int j = 0; j < dataLatih.size(); j++) {
@@ -180,16 +183,14 @@ public class KNN {
                 d.add(inclu);
             }
             temp = this.CekUrutanIncludian(d);
-            String hasilTebak = this.CariKNNReturn(temp, K);
-            Tebak t = new Tebak(dataUji.get(i).getLabel(),hasilTebak);
-            tebakList.add(t);
+            this.CariKNNPrint(temp, K);
             System.out.println("");
             DataBesar dataBesar = new DataBesar(temp);
             data.add(dataBesar);
         }
         return data;
     }
-    
+
     public ArrayList<Includian> CekUrutanIncludian(ArrayList<Includian> data) {
         Includian temp;
         for (int i = 0; i < data.size() - 1; i++) {
@@ -207,7 +208,40 @@ public class KNN {
     public ArrayList<Tebak> getTebakList() {
         return tebakList;
     }
-    
+
+    public void CariKNNPrint(ArrayList<Includian> data, int k) {
+        String label = "Error";
+        this.NilaiK = new ArrayList<K>();
+        if (k > 1) {
+            //buat tempat nya dulu berdasarkan banyak nya k
+            String[] dataTampung = new String[k];
+
+            //masukkan datanya ke array berdasarkan banyak nya k
+            for (int i = 0; i < k; i++) {
+                dataTampung[i] = data.get(i).getLabel();
+                addK(data.get(i).getLabel());
+            }
+
+            //urutne
+            this.NilaiK = CekUrutanK(this.NilaiK);
+
+            if (this.NilaiK.size() > 1) {
+                if (this.NilaiK.get(0).getFreq() > this.NilaiK.get(1).getFreq()) {
+                    label = this.NilaiK.get(0).getLabel();
+                } else if (this.NilaiK.get(0).getFreq() == this.NilaiK.get(1).getFreq()) {
+                    label = data.get(0).getLabel();
+                } else {
+                    label = data.get(0).getLabel();
+                }
+            } else {
+                label = this.NilaiK.get(0).getLabel();
+            }
+        } else {
+            label = data.get(0).getLabel();
+        }
+        System.out.println("K : " + k + " Hasil :" + label);
+    }
+
     public String CariKNNReturn(ArrayList<Includian> data, int k) {
         String label = "Error";
         this.NilaiK = new ArrayList<K>();
@@ -240,7 +274,7 @@ public class KNN {
         }
         return label;
     }
-    
+
     private void addK(String K) {
         K n = new K(1, K);
         int sama = 0;
@@ -258,7 +292,7 @@ public class KNN {
             }
         }
     }
-    
+
     public ArrayList<K> CekUrutanK(ArrayList<K> data) {
         K temp;
         for (int i = 0; i < data.size() - 1; i++) {
@@ -272,7 +306,7 @@ public class KNN {
         }
         return data;
     }
-    
+
     public ArrayList<DataBesar> CariAkurasiKNNArrayList(ArrayList<DataBesar> data, ArrayList<Buah> dataUji, int k) {
         this.Label = "Error";
         if (k > 1) {
@@ -285,27 +319,45 @@ public class KNN {
                 }
 
                 //cek jumlah e akeh po rane seko data nang array
-                double benar = 0, salah = 0;
+                double benarTebak = 0, salahTebak = 0;
                 double akurasiPerK = 0;
                 for (int j = 0; j < k; j++) {
                     if (dataTampung[j].equals(dataUji.get(i).getLabel())) {
-                        benar += 1;
+                        benarTebak += 1;
                     } else {
-                        salah += 1;
+                        salahTebak += 1;
                     }
                 }
-                akurasiPerK = (benar / (benar + salah)) * 100;
-                data.get(i).setTebakBenar(benar);
-                data.get(i).setTebakSalah(salah);
+                akurasiPerK = (benarTebak / (benarTebak + salahTebak)) * 100;
+                data.get(i).setTebakBenar(benarTebak);
+                data.get(i).setTebakSalah(salahTebak);
                 data.get(i).setAkurasi(akurasiPerK);
-                data.get(i).setLabelDataUji(dataUji.get(i).getLabel());
+//                data.get(i).setTebakK(Label);
+                this.setBenar(this.getBenar() + benarTebak);
+                this.setSalah(this.getSalah() + salahTebak);
             }
         } else {
             System.out.println("K Anda Tidak Saya Terima");
         }
         return data;
     }
-    
+
+    public double getBenar() {
+        return benar;
+    }
+
+    public void setBenar(double benar) {
+        this.benar = benar;
+    }
+
+    public double getSalah() {
+        return salah;
+    }
+
+    public void setSalah(double salah) {
+        this.salah = salah;
+    }
+
     public double CariAkurasiSemuaDataUji(ArrayList<DataBesar> data) {
         double akurasi = 0;
         for (int i = 0; i < data.size(); i++) {
