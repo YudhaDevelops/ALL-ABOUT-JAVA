@@ -152,40 +152,35 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel4" min="-2" pref="200" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel3" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="nilaiK" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnKnn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnNilaiAkurasi" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jPanel6" min="-2" pref="145" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel3" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="nilaiK" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="btnKnn" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnNilaiAkurasi" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dataA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dataB" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dataC" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="dataA" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="dataB" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="dataC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="btnGetUjiLatih" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnGetUjiLatih" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jPanel4" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace pref="11" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
@@ -384,11 +379,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelNilaiAkurasiSemua" min="-2" max="-2" attributes="0"/>
@@ -501,11 +491,6 @@
                           <Component id="nilaiLabelK" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -514,11 +499,6 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Akurasi Data Uji A :"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Data Latih :"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -562,11 +542,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="nilaiLabelK">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="progres"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel26">
               <Properties>
                 <Property name="text" type="java.lang.String" value="progres"/>
               </Properties>
@@ -641,6 +616,7 @@
         <Component class="javax.swing.JButton" name="btnKnn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cari KNN"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKnnActionPerformed"/>
@@ -649,6 +625,7 @@
         <Component class="javax.swing.JButton" name="btnGetUjiLatih">
           <Properties>
             <Property name="text" type="java.lang.String" value="Get Data Uji &amp; Latih"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGetUjiLatihActionPerformed"/>
@@ -657,6 +634,7 @@
         <Component class="javax.swing.JButton" name="btnNilaiAkurasi">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cek Nilai Akurasi"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNilaiAkurasiActionPerformed"/>
@@ -665,6 +643,7 @@
         <Component class="javax.swing.JButton" name="btnPecah">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pecah Data"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPecahActionPerformed"/>
@@ -674,6 +653,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Data A"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataAActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="dataB">
           <Properties>

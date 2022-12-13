@@ -12,15 +12,14 @@ public class HomeFrame extends javax.swing.JFrame {
     public String path;
     public double BenarUjiA, BenarUjiB, BenarUjiC, SalahUjiA, SalahUjiB, SalahUjiC;
     public double AkurasiUjiA, AkurasiUjiB, AkurasiUjiC;
-    public ArrayList<Buah> dataUji = new ArrayList<Buah>();
-    public ArrayList<Buah> dataLatih = new ArrayList<Buah>();
+    public ArrayList<Buah> dataUji = new ArrayList<>();
+    public ArrayList<Buah> dataLatih = new ArrayList<>();
 
-    public ArrayList<Buah> LatihA = new ArrayList<Buah>();
-    public ArrayList<Buah> LatihB = new ArrayList<Buah>();
-    public ArrayList<Buah> LatihC = new ArrayList<Buah>();
-    public ArrayList<Buah> DataUtuh = new ArrayList<Buah>();
+    public ArrayList<Buah> LatihA = new ArrayList<>();
+    public ArrayList<Buah> LatihB = new ArrayList<>();
+    public ArrayList<Buah> LatihC = new ArrayList<>();
+    public ArrayList<Buah> DataUtuh = new ArrayList<>();
     public ArrayList<DataBesar> DataBesar;
-    public ArrayList<Tebak> listTebak;
     int nilai;
 
     public ArrayList<Buah> getDataUji() {
@@ -88,8 +87,7 @@ public class HomeFrame extends javax.swing.JFrame {
     public HomeFrame() {
         initComponents();
         knn = new KNN();
-        DataBesar = new ArrayList<DataBesar>();
-        listTebak = new ArrayList<>();
+        DataBesar = new ArrayList<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -115,7 +113,6 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -125,7 +122,6 @@ public class HomeFrame extends javax.swing.JFrame {
         akurasiUjiC = new javax.swing.JLabel();
         labelNilaiAkurasiSemua = new javax.swing.JLabel();
         nilaiLabelK = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         labelBenarUjiA = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -284,8 +280,6 @@ public class HomeFrame extends javax.swing.JFrame {
 
         jLabel8.setText("Akurasi Data Uji A :");
 
-        jLabel11.setText("Data Latih :");
-
         jLabel9.setText("Akurasi Data Uji B :");
 
         jLabel10.setText("Akurasi Data Uji C :");
@@ -303,8 +297,6 @@ public class HomeFrame extends javax.swing.JFrame {
         labelNilaiAkurasiSemua.setText("progres");
 
         nilaiLabelK.setText("progres");
-
-        jLabel26.setText("progres");
 
         jLabel15.setText("Benar Data Uji A:");
 
@@ -337,10 +329,6 @@ public class HomeFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel26))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -430,16 +418,13 @@ public class HomeFrame extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(nilaiLabelK))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel26))
-                .addGap(38, 38, 38))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setText("Pilih Data Uji");
 
         btnKnn.setText("Cari KNN");
+        btnKnn.setEnabled(false);
         btnKnn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKnnActionPerformed(evt);
@@ -447,6 +432,7 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         btnGetUjiLatih.setText("Get Data Uji & Latih");
+        btnGetUjiLatih.setEnabled(false);
         btnGetUjiLatih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGetUjiLatihActionPerformed(evt);
@@ -454,6 +440,7 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         btnNilaiAkurasi.setText("Cek Nilai Akurasi");
+        btnNilaiAkurasi.setEnabled(false);
         btnNilaiAkurasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNilaiAkurasiActionPerformed(evt);
@@ -461,6 +448,7 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         btnPecah.setText("Pecah Data");
+        btnPecah.setEnabled(false);
         btnPecah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPecahActionPerformed(evt);
@@ -468,6 +456,11 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         dataA.setText("Data A");
+        dataA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataAActionPerformed(evt);
+            }
+        });
 
         dataB.setText("Data B");
         dataB.addActionListener(new java.awt.event.ActionListener() {
@@ -549,31 +542,28 @@ public class HomeFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nilaiK)
+                                .addComponent(btnKnn)
+                                .addComponent(btnNilaiAkurasi))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nilaiK)
-                                    .addComponent(btnKnn)
-                                    .addComponent(btnNilaiAkurasi))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel5)
-                                        .addComponent(dataA)
-                                        .addComponent(dataB)
-                                        .addComponent(dataC))
-                                    .addComponent(btnGetUjiLatih, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(11, 11, 11)))
+                                    .addComponent(jLabel5)
+                                    .addComponent(dataA)
+                                    .addComponent(dataB)
+                                    .addComponent(dataC))
+                                .addComponent(btnGetUjiLatih, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -626,30 +616,33 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnBacaFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBacaFileActionPerformed
-        DataUtuh = this.knn.BacaCsvBuffer("C:\\Users\\bimab\\OneDrive\\Documents\\data_huruf.csv");
-//        if (this.path == null) {
-//            JOptionPane.showMessageDialog(rootPane, "Path Nya Mana Gan?");
-//        } else {
-//            if (DataUtuh.size() > 0) {
-//                int pilih = JOptionPane.showConfirmDialog(rootPane, "Data Sudah Ada \n Apakah Anda Ingin Meload Ulang Data Anda?", "Info..", JOptionPane.YES_NO_OPTION);
-//                if (pilih == 0) {
-//                    DataUtuh.clear();
-////                    DataUtuh = this.knn.BacaCsvBuffer(this.path);
-//                    
-//                    JOptionPane.showMessageDialog(rootPane, "Siap!!, Data Anda Sudah Di Load Ulang");
-//                }
-//            } else {
-//                DataUtuh = this.knn.BacaCsvBuffer(this.path);
-//                JOptionPane.showMessageDialog(rootPane, "Data Anda Berhasil Di Load");
-//            }
-//        }
+//        DataUtuh = this.knn.BacaCsvBuffer("C:\\Users\\bimab\\OneDrive\\Documents\\data_huruf.csv");
+        if (this.path == null) {
+            JOptionPane.showMessageDialog(rootPane, "Path Nya Mana Gan?");
+        } else {
+            if (DataUtuh.size() > 0) {
+                int pilih = JOptionPane.showConfirmDialog(rootPane, "Data Sudah Ada \n Apakah Anda Ingin Meload Ulang Data Anda?", "Info..", JOptionPane.YES_NO_OPTION);
+                if (pilih == 0) {
+                    DataUtuh.clear();
+                    DataUtuh = this.knn.BacaCsvBuffer(this.path);
+                    JOptionPane.showMessageDialog(rootPane, "Siap!!, Data Anda Sudah Di Load Ulang");
+                    btnPecah.setEnabled(true);
+                }
+            } else {
+                DataUtuh = this.knn.BacaCsvBuffer(this.path);
+                JOptionPane.showMessageDialog(rootPane, "Data Anda Berhasil Di Load");
+                btnPecah.setEnabled(true);
+            }
+        }
     }//GEN-LAST:event_btnBacaFileActionPerformed
 
     private void btnGetUjiLatihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetUjiLatihActionPerformed
         if (!dataA.isSelected() && !dataB.isSelected() && !dataC.isSelected()) {
             JOptionPane.showMessageDialog(rootPane, "Harap Pilih Dua Dari Ketiga Data");
+            btnKnn.setEnabled(false);
         } else if (dataA.isSelected() && dataB.isSelected() && dataC.isSelected()) {
             JOptionPane.showMessageDialog(rootPane, "Hanya Boleh Memilih Dua Dari Ketiga Data");
+            btnKnn.setEnabled(false);
         } else {
             this.dataLatih.clear();
             this.dataUji.clear();
@@ -665,21 +658,17 @@ public class HomeFrame extends javax.swing.JFrame {
                 this.setDataUji(this.getLatihA());
             }
             JOptionPane.showMessageDialog(rootPane, "Data Uji Dan Data Latih Berhasil Di Load");
-
-            System.out.println("\nData Latih");
-            this.printData(this.getDataLatih());
-
-            System.out.println("\nData Uji");
-            this.printData(this.getDataUji());
-
-            System.out.println("\nLatih A");
-            this.printData(LatihA);
-
-            System.out.println("\nLatih B");
-            this.printData(LatihB);
-
-            System.out.println("\nLatih C");
-            this.printData(LatihC);
+            btnKnn.setEnabled(true);
+//            System.out.println("\nData Latih");
+//            this.printData(this.getDataLatih());
+//            System.out.println("\nData Uji");
+//            this.printData(this.getDataUji());
+//            System.out.println("\nLatih A");
+//            this.printData(LatihA);
+//            System.out.println("\nLatih B");
+//            this.printData(LatihB);
+//            System.out.println("\nLatih C");
+//            this.printData(LatihC);
         }
     }//GEN-LAST:event_btnGetUjiLatihActionPerformed
 
@@ -760,6 +749,7 @@ public class HomeFrame extends javax.swing.JFrame {
         int k = Integer.parseInt(nilaiK.getText());
         nilaiLabelK.setText(nilaiK.getText());
         this.DataBesar = this.knn.HitungIncludianArrayList(dataLatih, dataUji, k);
+        btnNilaiAkurasi.setEnabled(true);
     }//GEN-LAST:event_btnKnnActionPerformed
 
     private void btnNilaiAkurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNilaiAkurasiActionPerformed
@@ -790,25 +780,25 @@ public class HomeFrame extends javax.swing.JFrame {
             System.out.println("Salah : " + SalahUjiA);
             System.out.println("Akurasi A : " + AkurasiUjiA);
         }
-        
+
         if (AkurasiUjiA != 0) {
             akurasiUjiA.setText(String.valueOf(AkurasiUjiA));
             labelBenarUjiA.setText(String.valueOf(BenarUjiA));
             labelSalahUjiA.setText(String.valueOf(SalahUjiA));
         }
-        
+
         if (AkurasiUjiB != 0) {
             akurasiUjiB.setText(String.valueOf(AkurasiUjiB));
             labelBenarUjiB.setText(String.valueOf(BenarUjiB));
             labelSalahUjiB.setText(String.valueOf(SalahUjiB));
         }
-        
+
         if (AkurasiUjiC != 0) {
             akurasiUjiC.setText(String.valueOf(AkurasiUjiC));
             labelBenarUjiC.setText(String.valueOf(BenarUjiC));
             labelSalahUjiC.setText(String.valueOf(SalahUjiC));
         }
-        
+
         nilaiLabelK.setText(nilaiK.getText());
 
         if (AkurasiUjiA != 0 && AkurasiUjiB != 0 && AkurasiUjiC != 0) {
@@ -816,30 +806,40 @@ public class HomeFrame extends javax.swing.JFrame {
             labelNilaiAkurasiSemua.setText(String.valueOf(hasil));
             System.out.println("Rata Rata Dari Ketiga Akurasi :" + hasil);
         }
+        btnGetUjiLatih.setEnabled(false);
+        btnKnn.setEnabled(false);
+        btnNilaiAkurasi.setEnabled(false);
+        dataA.setSelected(false);
+        dataB.setSelected(false);
+        dataC.setSelected(false);
     }//GEN-LAST:event_btnNilaiAkurasiActionPerformed
 
 
     private void btnPecahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPecahActionPerformed
         if (this.DataUtuh.size() > 1) {
-            this.PecahData(DataUtuh);
-
-            System.out.println("\nLatih A");
-            this.printData(this.getLatihA());
-
-            System.out.println("\nLatih B");
-            this.printData(this.getLatihB());
-
-            System.out.println("\nLatih C");
-            this.printData(this.getLatihC());
-
-            JOptionPane.showMessageDialog(rootPane, "Data Berhasil Di Pecah Menjadi 3 Data");
+            if (LatihA.size() > 1 && LatihB.size() > 1 && LatihC.size() > 1) {
+                int jawab = JOptionPane.showOptionDialog(this, "Yakin Ingin Membagi Data Kembali", "Bagi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (jawab == 0) {
+                    this.PecahData(DataUtuh);
+                    JOptionPane.showMessageDialog(rootPane, "Data Berhasil Di Pecah Menjadi 3 Data");
+                }
+            } else {
+                this.PecahData(DataUtuh);
+                JOptionPane.showMessageDialog(rootPane, "Data Berhasil Di Pecah Menjadi 3 Data");
+            }
+//            System.out.println("\nLatih A");
+//            this.printData(this.getLatihA());
+//            System.out.println("\nLatih B");
+//            this.printData(this.getLatihB());
+//            System.out.println("\nLatih C");
+//            this.printData(this.getLatihC());
         } else {
             JOptionPane.showMessageDialog(rootPane, "Data Masih Kosong Kak");
         }
     }//GEN-LAST:event_btnPecahActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        TableDataSemua tblSemua = new TableDataSemua(this, true, this.knn.getDataA(), this.knn.getDataB(), this.knn.getDataC());
+        TableDataSemua tblSemua = new TableDataSemua(this, true,this.getLatihA(), this.getLatihB(), this.getLatihC());
         tblSemua.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -850,12 +850,28 @@ public class HomeFrame extends javax.swing.JFrame {
     }
 
     private void dataBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBActionPerformed
-        // TODO add your handling code here:
+        if (this.dataB.isSelected() && dataA.isSelected() || this.dataB.isSelected() && dataC.isSelected()) {
+            btnGetUjiLatih.setEnabled(true);
+        } else {
+            btnGetUjiLatih.setEnabled(false);
+        }
     }//GEN-LAST:event_dataBActionPerformed
 
     private void dataCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataCActionPerformed
-        // TODO add your handling code here:
+        if (this.dataC.isSelected() && dataA.isSelected() || this.dataC.isSelected() && dataB.isSelected()) {
+            btnGetUjiLatih.setEnabled(true);
+        } else {
+            btnGetUjiLatih.setEnabled(false);
+        }
     }//GEN-LAST:event_dataCActionPerformed
+
+    private void dataAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAActionPerformed
+        if (this.dataA.isSelected() && dataB.isSelected() || this.dataA.isSelected() && dataC.isSelected()) {
+            btnGetUjiLatih.setEnabled(true);
+        } else {
+            btnGetUjiLatih.setEnabled(false);
+        }
+    }//GEN-LAST:event_dataAActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -899,7 +915,6 @@ public class HomeFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -909,7 +924,6 @@ public class HomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

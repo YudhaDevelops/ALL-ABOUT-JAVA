@@ -12,7 +12,6 @@ public class KNN {
     ArrayList<Buah> DataB = new ArrayList<>();
     ArrayList<Buah> DataC = new ArrayList<>();
     ArrayList<Buah> DataLatih = new ArrayList<>();
-    ArrayList<Tebak> tebakList = new ArrayList<>();
     ArrayList<K> NilaiK;
     double benar, salah;
     String Label;
@@ -203,10 +202,6 @@ public class KNN {
             }
         }
         return data;
-    }
-
-    public ArrayList<Tebak> getTebakList() {
-        return tebakList;
     }
 
     public void CariKNNPrint(ArrayList<Includian> data, int k) {
